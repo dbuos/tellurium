@@ -1,5 +1,7 @@
 defmodule DomainEvent do
 
+  @invalid_msg "Invalid nil values in DomainEvent constructor!"
+
   defstruct [
     :name,
     :eventId,
@@ -15,9 +17,9 @@ defmodule DomainEvent do
     new_p(name, data, message_id)
   end
 
-  defp new_p(nil, _, _), do: raise "Invalid nil values in DomainEvent constructor!"
-  defp new_p(_, nil, _), do: raise "Invalid nil values in DomainEvent constructor!"
-  defp new_p(_, _, nil), do: raise "Invalid nil values in DomainEvent constructor!"
+  defp new_p(nil, _, _), do: raise @invalid_msg
+  defp new_p(_, nil, _), do: raise @invalid_msg
+  defp new_p(_, _, nil), do: raise @invalid_msg
   defp new_p(name, data, message_id) do
     %__MODULE__{
       name: name,
